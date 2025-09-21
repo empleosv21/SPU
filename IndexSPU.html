@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>SSF CSV/XLSX - Creación Archivo SPU</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>SSF CSV/XLSX - Creación Archivo SPU</h1>
+
+    <div class="instructions">
+        <h3>Instrucciones de uso:</h3>
+        <ol>
+            <li>Seleccione el archivo Excel con las hojas: BASE, ISSS, DUI, INGRESOS y SUBSIDIO</li>
+            <li>Ingrese el mes del reporte en formato mmyyyy (ej. 082025)</li>
+            <li>Haga clic en "Cargar Excel" para procesar el archivo</li>
+            <li>Revise la vista previa y haga clic en "Calcular" para procesar los datos</li>
+            <li>Finalmente, exporte los archivos CSV y XLSX con el botón "Exportar"</li>
+        </ol>
+    </div>
+
+    <div class="container">
+        <div class="input-group">
+            <label for="file">Archivo Excel (.xlsx/.xls):</label>
+            <input type="file" id="file" accept=".xlsx,.xls" />
+        </div>
+        
+        <div class="input-group">
+            <label for="mesreporte">Mes reporte (mmyyyy):</label>
+            <input id="mesreporte" placeholder="ej. 082025 (mmyyyy)" />
+        </div>
+        
+        <div class="buttons-container">
+            <button id="btnLoad">Cargar Excel</button>
+            <button id="btnCalc" disabled>Calcular</button>
+            <button id="btnExport" disabled>Exportar CSV y XLSX</button>
+        </div>
+        
+        <div class="progress" id="progressBar">
+            <div class="progress-bar" id="progressBarInner"></div>
+        </div>
+        
+        <div id="alertBox"></div>
+    </div>
+
+    <div class="container">
+        <h2>Registro de actividad</h2>
+        <div id="status" class="log"></div>
+    </div>
+
+    <div class="container">
+        <div class="tab-container">
+            <div class="tab-buttons">
+                <div class="tab-button active" data-tab="preview">Vista previa</div>
+                <div class="tab-button" data-tab="catalog">Catálogo de observaciones</div>
+            </div>
+            
+            <div id="preview" class="tab-content active"></div>
+            
+            <div id="catalog" class="tab-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>00</td><td>No tiene observación</td></tr>
+                        <tr><td>01</td><td>Sin cambios con respecto al mes anterior</td></tr>
+                        <tr><td>02</td><td>Pagos adicionales</td></tr>
+                        <tr><td>03</td><td>Aprendices</td></tr>
+                        <tr><td>04</td><td>Pensionado (tiene prioridad sobre otros códigos)</td></tr>
+                        <tr><td>05</td><td>Licencia</td></tr>
+                        <tr><td>06</td><td>Incapacidad</td></tr>
+                        <tr><td>07</td><td>Retiro</td></tr>
+                        <tr><td>08</td><td>Ingreso</td></tr>
+                        <tr><td>09</td><td>Vacaciones</td></tr>
+                        <tr><td>10</td><td>Vacaciones más pagos adicionales</td></tr>
+                        <tr><td>12</td><td>Subsidio</td></tr>
+                        <tr><td>13</td><td>IPSFA</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
